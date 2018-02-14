@@ -1,0 +1,104 @@
+##########################################################################################################################################################
+docs.influxdata.com/enterprise/v1.2/quickstart_installation/cluster_installation/
+"Each server is a meta node and a data node, that is, each server runs both the meta service and the data service."
+##########################################################################################################################################################
+==========================
+influx1a.gvirtsman.com:
+==========================
+slcli vs create --datacenter=sjc01 --hostname=influx1a --os UBUNTU_LATEST --billing=hourly --cpu 8 --memory 16384 --network=1000 --disk=100G --domain=gvirtsman.com --key=softlayerpublickey_nopass
+###
+Public:		198.11.219.238
+Private:	10.88.154.15
+root:		P75GlDga
+###
+==========================
+influx2a.gvirtsman.com:
+==========================
+slcli vs create --datacenter=sjc01 --hostname=influx2a --os UBUNTU_LATEST --billing=hourly --cpu 1 --memory 1024 --network=10 --disk=25G --domain=gvirtsman.com --key=softlayerpublickey_nopass
+###
+Public:		50.23.100.179
+Private:	10.54.136.113
+root:		Dqc653ee
+###
+==========================
+influx3a.gvirtsman.com:
+==========================
+slcli vs create --datacenter=sjc01 --hostname=influx3a --os UBUNTU_LATEST --billing=hourly --cpu 8 --memory 16384 --network=1000 --disk=100G --domain=gvirtsman.com --key=softlayerpublickey_nopass
+###
+Public:		198.11.219.236
+Private:	10.88.154.19
+root:		W6BlfTdE
+###
+##########################################################################################################################################################
+###
+To prevent excessive logging
+###
+vi /etc/influxdb/influxdb.conf
+[data]
+query-log-enabled = false
+[http]
+log-enabled = false
+[subscriber]
+enabled = false
+[meta]
+logging-enabled = false
+###
+vi /etc/influxdb/influxdb-meta.conf
+logging-enabled = false
+###
+vi /etc/influx-enterprise/influx-enterprise.conf
+*NO CHANGE*
+###
+##########################################################################################################################################################
+==========================
+cricket001.gvirtsman.com:
+==========================
+slcli vs create --datacenter=sjc01 --hostname=cricket001 --os UBUNTU_LATEST --billing=hourly --cpu 1 --memory 1024 --network=10 --disk=25G --domain=gvirtsman.com --key=softlayerpublickey_nopass
+###
+Public:		50.23.122.130
+Private:	10.54.136.82
+root:		D33fcC9H
+###
+1)	apt-get update
+2)	apt install python-minimal
+3)	apt install python-pip
+4)	pip install softlayer_messaging
+5)	pip install influxdb
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+###
+softlayer.com/data-centers
+###
+Amsterdam 01		ams01
+Amsterdam 03		ams03
+Chennai			che01
+Dallas 01		dal01
+Dallas 02		dal02
+Dallas 05		dal05
+Dallas 06		dal06
+Dallas 07		dal07
+Dallas 09		dal09
+Dallas 10		dal10
+Dallas 12		dal12
+Dallas 13		dal13
+Frankfurt		fra02
+Hong Kong		hkg02
+Houston			hou02
+London			lon02
+Melbourne		mel01
+Milan			mil01
+Montreal		mon01
+Oslo			osl01
+Paris			par01
+Quer�taro		mex01
+San Jose 01		sjc01
+San Jose 03		sjc03
+Sao Paulo		sao01
+Seattle			sea01
+Seoul 01		seo01
+Singapore		sng01
+Sydney			syd01
+Tokyo			tok02
+Toronto			tor01
+Washington, D.C. 01	wdc01
+Washington, D.C. 04	wdc04
+##########################################################################################################################################################
